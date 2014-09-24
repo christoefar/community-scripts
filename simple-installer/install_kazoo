@@ -201,6 +201,7 @@ usage(){
     echo "-r <Stable|Staging|Latest> - The release version to select on the repo"
     echo "-f <hostname>              - The system hostname to set during install"
     echo "-h                         - displays this menu"
+    echo "-k                         - kickstart mode"
 
     error_exit ${1:-}
 }
@@ -465,9 +466,9 @@ handle_args(){
            u) set_repo_url $OPTARG        || usage "$opt - Invalid repo URL $OPTARG specified"  ;;    
            r) set_install_release $OPTARG || usage "$opt - Invalid release $OPTARG specified"   ;;
            f) system_hostname=$OPTARG ;;
-           h) usage "" ;;
-           k) kickstart=1
-           *) usage "Unknown option $opt selected!" ;;
+           h) usage ""                ;;
+           k) kickstart=1             ;;
+           *) usage "Unknown option selected!" ;;
       esac      
   done
 
