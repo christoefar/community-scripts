@@ -12,7 +12,7 @@ install_repo_url=""
 install_release=""
 install_base=""
 all_in_one=""
-
+kickstart=""
 auto_pilot=""
 
 #re
@@ -466,6 +466,7 @@ handle_args(){
            r) set_install_release $OPTARG || usage "$opt - Invalid release $OPTARG specified"   ;;
            f) system_hostname=$OPTARG ;;
            h) usage "" ;;
+           k) kickstart=1
            *) usage "Unknown option $opt selected!" ;;
       esac      
   done
@@ -681,6 +682,14 @@ do
 done
 
 dbg "running /opt/kazoo_install/setup_packages $arg"
+
+if [[ ${kickstart:-} ]]; then
+    echo "/opt/kazoo_install/setup_packages $arg" >> /etc/rc.d/rc.local
+    echo "sed -i \"s|.*setup_packages.*||g\"  /etc/rc.d/rc.local" >> /etc/rc.d/rc.local
+    echo "sed -i \"s|.*sed.*||g\"  /etc/rc.d/rc.local" >> /etc/rc.d/rc.local 
+    clean_exit 
+fi
+
 
 /opt/kazoo_install/setup_packages $arg 
 
