@@ -200,7 +200,6 @@ usage(){
     echo "-u <yum repository URL>    - Optionally specify a custom yum repository  URL to use for installation"
     echo "-r <Stable|Staging|Latest> - The release version to select on the repo"
     echo "-f <hostname>              - The system hostname to set during install"
-    echo "-k                         - kickstart install 
     echo "-h                         - displays this menu"
     echo "-k                         - kickstart mode"
 
