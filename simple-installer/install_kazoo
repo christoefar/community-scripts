@@ -200,6 +200,7 @@ usage(){
     echo "-u <yum repository URL>    - Optionally specify a custom yum repository  URL to use for installation"
     echo "-r <Stable|Staging|Latest> - The release version to select on the repo"
     echo "-f <hostname>              - The system hostname to set during install"
+    echo "-k                         - kickstart install 
     echo "-h                         - displays this menu"
 
     error_exit ${1:-}
@@ -458,7 +459,7 @@ get_available_versions(){
 handle_args(){
   dbg "Checking for command line arguments"
 
-  while getopts ahs:u:r:f: opt; do
+  while getopts kahs:u:r:f: opt; do
       case $opt in
            a) auto_pilot=1 ;;
            s) set_install_source $OPTARG  || usage "$opt - Invalid source specified -s $OPTARG" ;;
